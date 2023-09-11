@@ -8,4 +8,3 @@ class User(AbstractUser):
             upload_to='users/avatars/%Y/%m/%d/',
             default='users/avatars/default.jpg'
         )
-    

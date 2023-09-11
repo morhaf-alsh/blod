@@ -22,7 +22,7 @@ class Blog(models.Model):
     data_modified = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     text = models.TextField()
-    likes = models.ManyToManyField(User, related_name='blog_like')
+    likes = models.ManyToManyField(User, related_name='blog_like', blank=True)
 
     class Meta:
         verbose_name = 'blog'
@@ -31,5 +31,7 @@ class Blog(models.Model):
         return self.title
     def get_number_of_likes(self):
         return self.likes.count()
-
+    def add_one_like(self, like, username):
+        if like == True:
+            self.likes.add(User.objects.get(username=username))
 
